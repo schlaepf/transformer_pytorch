@@ -7,7 +7,7 @@ from torchtext.legacy.data import Field, BucketIterator
 from torchtext.legacy.datasets.translation import Multi30k
 
 
-class DataLoader:
+class DataLoaderMulti30k:
     source: Field = None
     target: Field = None
 

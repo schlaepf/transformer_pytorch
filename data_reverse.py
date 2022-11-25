@@ -4,11 +4,11 @@
 @homepage : https://github.com/gusdnd852
 """
 from conf import *
-from util.data_loader import DataLoaderMulti30k
+from util.data_loader_reverse import DataLoaderReverse
 from util.tokenizer import Tokenizer
 
 tokenizer = Tokenizer()
-loader = DataLoaderMulti30k(ext=('.en', '.de'),
+loader = DataLoaderReverse(ext=('.en', '.de'),
                     tokenize_en=tokenizer.tokenize_en,
                     tokenize_de=tokenizer.tokenize_de,
                     init_token='<sos>',
@@ -16,7 +16,7 @@ loader = DataLoaderMulti30k(ext=('.en', '.de'),
 
 train, valid, test = loader.make_dataset()
 loader.build_vocab(train_data=train, min_freq=2)
-train_iter, valid_iter, test_iter = loader.make_iter(train, valid, test,
+train_loader, valid_loader, test_loader = loader.make_iter(train, valid, test,
                                                      batch_size=batch_size,
                                                      device=device)
 
